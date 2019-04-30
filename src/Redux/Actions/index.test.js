@@ -1,5 +1,9 @@
+import axios from 'axios';
+
 import * as actions from './index';
 import * as types from '../Constants';
+
+jest.mock('axios');
 
 describe('actions', () => {
   it('create load cities action', () => {
@@ -36,5 +40,19 @@ describe('actions', () => {
       id
     };
     expect(actions.noHover(id)).toEqual(expectedAction);
+  });
+
+// TODO: use redux-mock store as described in https://redux.js.org/recipes/writing-tests#async-action-creators
+  it('fetchCities', async () => {
+    const loadCitiesMock = jest.spyOn(actions, 'fetchCities');
+    axios.get.mockImplementation(() => ({
+      city: 'lol',
+      longitude: '123',
+      latitude: '456',
+      state: 'yolo'
+    }));
+    await actions.fetchCities()(() => {});
+    expect(loadCitiesMock).toHaveBeenCalled();
+    expect(axios.get).toHaveBeenCalled();
   });
 });
