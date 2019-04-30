@@ -1,3 +1,13 @@
 {
-    "cities_url": "https://gist.githubusercontent.com/nept/0f311e330a7881fff35d9a8aca129bb2/raw/1227b03c6f85950095b302c4c0c5f5843a604094/cities.json"
+    "cities_url": "https://gist.githubusercontent.com/nept/0f311e330a7881fff35d9a8aca129bb2/raw/1227b03c6f85950095b302c4c0c5f5843a604094/cities.json",
+    "google":
+    {
+        "api": "https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=geometry,drawing,places",
+        "defaultLocation":
+        {
+            "lat": 39.381266,
+            "lng": -97.922211
+        },
+        "zoom": 4
+    }
 }
