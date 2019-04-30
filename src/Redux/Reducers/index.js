@@ -11,7 +11,10 @@ const initialState = {
 export default function rootReducer(state = initialState, action) {
   switch (action.type) {
     case LOAD_CITIES: {
-      return { ...state };
+      const cities = action.payload.map(city => (
+        { ...city, selected: false, id: `${city.latitude} ${city.longitude}` }
+      ));
+      return { ...state, cities };
     }
     case SELECT_CITY: {
       return { ...state };

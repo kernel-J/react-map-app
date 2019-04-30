@@ -1,5 +1,10 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import styled from 'styled-components';
+import PropTypes from 'prop-types';
+
+import { fetchCities } from '../Redux/Actions';
+
 
 const Page = styled.div`
   display: flex;
@@ -8,6 +13,15 @@ const Page = styled.div`
 `;
 
 class App extends Component {
+  static propTypes = {
+    fetchCities: PropTypes.func
+  }
+
+  componentDidMount() {
+    const { fetchCities } = this.props;
+    fetchCities();
+  }
+
   render() {
     return (
       <Page>
@@ -16,4 +30,12 @@ class App extends Component {
   };
 };
 
-export default App;
+
+const mapDispatchToProps = dispatch => ({
+  fetchCities: () => dispatch(fetchCities())
+});
+
+export default connect(
+  null,
+  mapDispatchToProps
+)(App);
