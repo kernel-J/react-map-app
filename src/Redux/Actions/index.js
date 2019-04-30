@@ -3,7 +3,8 @@ import axios from 'axios';
 import {
   LOAD_CITIES,
   SELECT_CITY,
-  UNSELECT_CITY
+  NO_HOVER,
+  ON_HOVER
 } from '../Constants';
 import { cities_url } from '../../config.json';
 
@@ -17,8 +18,13 @@ export const selectCity = id => ({
   id
 });
 
-export const unselectCity = id => ({
-  type: UNSELECT_CITY,
+export const noHover = id => ({
+  type: NO_HOVER,
+  id
+});
+
+export const onHover = id => ({
+  type: ON_HOVER,
   id
 });
 

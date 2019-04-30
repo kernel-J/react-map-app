@@ -20,12 +20,21 @@ describe('actions', () => {
     expect(actions.selectCity(id)).toEqual(expectedAction);
   });
 
-  it('create unselect city action', () => {
+  it('create on hover action', () => {
     const id = '12345';
     const expectedAction = {
-      type: types.UNSELECT_CITY,
+      type: types.ON_HOVER,
       id
     };
-    expect(actions.unselectCity(id)).toEqual(expectedAction);
+    expect(actions.onHover(id)).toEqual(expectedAction);
+  });
+
+  it('create no hover action', () => {
+    const id = '12345';
+    const expectedAction = {
+      type: types.NO_HOVER,
+      id
+    };
+    expect(actions.noHover(id)).toEqual(expectedAction);
   });
 });

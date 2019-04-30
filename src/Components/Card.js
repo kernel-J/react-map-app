@@ -15,11 +15,17 @@ const Label = styled.div`
 `
 
 const Card = (props) => {
-  const { onSelect, onUnselect, city } = props;
+  const {
+    onSelect,
+    onHover,
+    noHover,
+    city
+  } = props;
   return (
     <Base 
-      onMouseEnter={onSelect}
-      onMouseLeave={onUnselect}
+      onClick={onSelect}
+      onMouseLeave={noHover}
+      onMouseEnter={onHover}
       selected={city.selected}
     >
       <Label>City: {city.city}</Label>
@@ -31,7 +37,8 @@ const Card = (props) => {
 
 Card.propTypes = {
   onSelect: PropTypes.func,
-  onUnselect: PropTypes.func,
+  noHover: PropTypes.func,
+  onHover: PropTypes.func,
   city: PropTypes.object
 }
 

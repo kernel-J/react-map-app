@@ -17,7 +17,7 @@ const GoogleMapWrapper = withScriptjs(withGoogleMap(props =>
     defaultCenter={{ lat: defaultLocation.lat, lng: defaultLocation.lng }}
   >
     {props.cities.map(city => {
-      if (city.selected) {
+      if (city.hovered) {
         return (
           <Marker
             key={city.id}
@@ -25,12 +25,16 @@ const GoogleMapWrapper = withScriptjs(withGoogleMap(props =>
             animation={1}
           />
         );
+      } else if (city.selected) {
+        return (
+          <Marker
+            key={city.id}
+            position={{ lat: city.latitude, lng: city.longitude }}
+          />
+        );
       }
       return (
-        <Marker
-          key={city.id}
-          position={{ lat: city.latitude, lng: city.longitude }}
-        />
+        null
       );
     })}
   </GoogleMap>

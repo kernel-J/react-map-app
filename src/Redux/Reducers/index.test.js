@@ -23,8 +23,9 @@ describe('rootReducer', () => {
     }
     ];
     const newState = payload.map(city => ({ 
-        ...city, 
+        ...city,
         selected: false,
+        hovered: false,
         id: `${city.latitude} ${city.longitude}`
       }));
     const expected = { cities: newState };
@@ -44,7 +45,7 @@ describe('rootReducer', () => {
       latitude: 1,
       longitude: 1,
       selected: false,
-      id: '1 1',
+      id: '1 1'
     }];
     const newState = payload.map(city => ({
         ...city, 
@@ -58,7 +59,7 @@ describe('rootReducer', () => {
     })).toEqual(expected);
   });
   
-  it('handle UNSELECT_CITY', () => {
+  it('handle unselecting city', () => {
     const payload = [
     {
       city: 'New York',
@@ -66,16 +67,64 @@ describe('rootReducer', () => {
       latitude: 1,
       longitude: 1,
       selected: true,
-      id: '1 1',
+      id: '1 1'
     }];
     const newState = payload.map(city => ({
-        ...city, 
+        ...city,
         selected: false,
         id: `${city.latitude} ${city.longitude}`
       }));
     const expected = { cities: newState };
     expect(rootReducer({ cities: payload }, {
-      type: types.UNSELECT_CITY,
+      type: types.SELECT_CITY,
+      id: '1 1'
+    })).toEqual(expected);
+  });
+
+  it('handle ON_HOVER', () => {
+    const payload = [
+    {
+      city: 'New York',
+      state: 'New York',
+      latitude: 1,
+      longitude: 1,
+      selected: true,
+      hovered: false,
+      id: '1 1'
+    }];
+    const newState = payload.map(city => ({
+        ...city,
+        selected: true,
+        hovered: true,
+        id: `${city.latitude} ${city.longitude}`
+      }));
+    const expected = { cities: newState };
+    expect(rootReducer({ cities: payload }, {
+      type: types.ON_HOVER,
+      id: '1 1'
+    })).toEqual(expected);
+  });
+
+  it('handle NO_HOVER', () => {
+    const payload = [
+    {
+      city: 'New York',
+      state: 'New York',
+      latitude: 1,
+      longitude: 1,
+      selected: false,
+      hovered: true,
+      id: '1 1'
+    }];
+    const newState = payload.map(city => ({
+        ...city,
+        selected: false,
+        hovered: false,
+        id: `${city.latitude} ${city.longitude}`
+      }));
+    const expected = { cities: newState };
+    expect(rootReducer({ cities: payload }, {
+      type: types.NO_HOVER,
       id: '1 1'
     })).toEqual(expected);
   });

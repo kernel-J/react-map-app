@@ -5,7 +5,7 @@ import ReactList from 'react-list';
 import PropTypes from 'prop-types';
 
 import Card from '../Components/Card';
-import { selectCity, unselectCity } from '../Redux/Actions';
+import { selectCity, noHover, onHover } from '../Redux/Actions';
 
 const List = styled.div`
   max-height: 100vh;
@@ -16,7 +16,13 @@ class ScrollList extends PureComponent {
   static propTypes = {
     cities: PropTypes.array,
     selectCity: PropTypes.func,
-    unselectCity: PropTypes.func,
+    noHover: PropTypes.func,
+    onHover: PropTypes.func
+  };
+
+  handleOnHover = id => {
+    const { onHover } = this.props;
+    onHover(id);
   };
 
   handleSelect = id => {
@@ -24,9 +30,9 @@ class ScrollList extends PureComponent {
     selectCity(id);
   };
 
-  handleUnselect = id => {
-    const { unselectCity } = this.props;
-    unselectCity(id);
+  handleNoHover = id => {
+    const { noHover } = this.props;
+    noHover(id);
   };
 
   renderItem = (index, key) => {
@@ -36,7 +42,8 @@ class ScrollList extends PureComponent {
         key={key}
         city={cities[index]}
         onSelect={() => { this.handleSelect(cities[index].id) }}
-        onUnselect={() => { this.handleUnselect(cities[index].id) }}
+        noHover={() => { this.handleNoHover(cities[index].id) }}
+        onHover={() => { this.handleOnHover(cities[index].id) }}
       />
     );
   };
@@ -62,7 +69,8 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({
   selectCity: id => dispatch(selectCity(id)),
-  unselectCity: id => dispatch(unselectCity(id))
+  noHover: id => dispatch(noHover(id)),
+  onHover: id => dispatch(onHover(id))
 });
 
 export default connect(

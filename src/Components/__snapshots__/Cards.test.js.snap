@@ -1,0 +1,52 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`render default Card 1`] = `
+<div
+  className="sc-bdVaJa jiJPRA"
+  selected={false}
+>
+  <div
+    className="sc-bwzfXH cFofpB"
+  >
+    City: 
+    New York
+  </div>
+  <div
+    className="sc-bwzfXH cFofpB"
+  >
+    Population: 
+    8405837
+  </div>
+  <div
+    className="sc-bwzfXH cFofpB"
+  >
+    State: 
+    New York
+  </div>
+</div>
+`;
+
+exports[`render selected Card 1`] = `
+<div
+  className="sc-bdVaJa kJYvwi"
+  selected={true}
+>
+  <div
+    className="sc-bwzfXH cFofpB"
+  >
+    City: 
+    New York
+  </div>
+  <div
+    className="sc-bwzfXH cFofpB"
+  >
+    Population: 
+  </div>
+  <div
+    className="sc-bwzfXH cFofpB"
+  >
+    State: 
+    New York
+  </div>
+</div>
+`;
