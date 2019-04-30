@@ -17,10 +17,22 @@ export default function rootReducer(state = initialState, action) {
       return { ...state, cities };
     }
     case SELECT_CITY: {
-      return { ...state };
+      const cities = state.cities.map(city => {
+        if (city.id === action.id) {
+          return { ...city, selected: true };
+        }
+        return city;
+      });
+      return { ...state, cities };
     }
     case UNSELECT_CITY: {
-      return { ...state };
+      const cities = state.cities.map(city => {
+        if (city.id === action.id) {
+          return { ...city, selected: false };
+        }
+        return city;
+      });
+      return { ...state, cities };
     }
     default:
       return state;
